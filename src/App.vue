@@ -6,7 +6,7 @@ store.state.display.isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobi
 </script>
 
 <template>
-  <div class="app">
+  <div id="smooth-content" class="app">
     <router-view />
   </div>
 </template>
