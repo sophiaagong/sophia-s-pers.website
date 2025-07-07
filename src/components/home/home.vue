@@ -29,7 +29,7 @@
                 </n-gi>
                 <n-gi :span="12">
                     <div class="photo-container">
-                        <img src="/sophia/5G8A3215.JPG" />
+                        <img src="/sophia/portrait.jpg" />
                     </div>
                 </n-gi>
             </n-grid>
@@ -68,6 +68,9 @@
     text-align: center;
 
     img {
+        border-radius: 12px;
+        border: 12px solid rgb(194, 242, 255);
+        // photo inner border radius: 12px
         width: 60%;
     }
 }

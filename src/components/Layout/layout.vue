@@ -9,6 +9,9 @@ import {
     ScrollTrigger
 } from 'gsap/all';
 import HomeVue from '../home/home.vue';
+import AboutVue from '../about/about.vue';
+import MusicalVue from '../musical/musical.vue';
+import router from '../../router/router';
 
 const themeOverrides = {
     common: {
@@ -37,13 +40,13 @@ onMounted(() => {
         <n-layout>
             <n-layout-header>
                 <n-flex :justify="'space-between'" :align="'center'">
-                    <n-flex class="logo" :align="'center'"> 
+                    <n-flex class="logo" :align="'center'">
                         <n-avatar round style="background: var(--primary-color)">S</n-avatar>
                         <div>Sophia's Website</div>
                     </n-flex>
                     <n-flex :size="48">
                         <n-button text>ABOUT ME</n-button>
-                        <n-button text>ACHIEVEMENTS</n-button>
+                        <n-button text @click="router.push({ name: 'Musicals' })">MUSICALS</n-button>
                         <n-button text>CONTACTS</n-button>
                         <n-button text>CURRICULAR</n-button>
                     </n-flex>
@@ -51,6 +54,8 @@ onMounted(() => {
             </n-layout-header>
             <n-layout-content>
                 <home-vue></home-vue>
+                <about-vue></about-vue>
+                <musical-vue></musical-vue>
             </n-layout-content>
         </n-layout>
     </n-config-provider>
