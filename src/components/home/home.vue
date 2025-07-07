@@ -29,7 +29,7 @@
                 </n-gi>
                 <n-gi :span="12">
                     <div class="photo-container">
-                        <img src="/sophia/sophia.JPG" />
+                        <img src="/sophia/5G8A3215.JPG" />
                     </div>
                 </n-gi>
             </n-grid>
