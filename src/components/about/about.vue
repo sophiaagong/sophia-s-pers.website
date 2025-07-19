@@ -11,7 +11,7 @@ const showModal = ref(false);
             <div class="title">About me</div>
             <n-grid class="content-container" :x-gap="48">
                 <n-gi :span="12" class="left">
-                    <img src="/sophia/about.jpg" />
+                    <img src="/sophia/20250719.jpg" />
                 </n-gi>
                 <n-gi :span="12" class="right">
                     <div class="hello">Hi, I'm Sophia, based in Irvine, California.</div>

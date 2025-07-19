@@ -9,6 +9,7 @@ const steps = [
         description: "Aenean varius varius dictum. Ut nibh odio, luctus et sodales nec, mattis eu neque. Aliquam cursus quam dignissim mi tempus, sit amet dictum ex luctus. Nam ut consequat diam.",
         imgList: [
             "/sophia/musicals/musical1.jpg",
+            "/sophia/musicals/WechatIMG119.jpg",
         ]
     },
     {
@@ -16,6 +17,7 @@ const steps = [
         description: "Donec mollis, nisi et tristique tincidunt, turpis quam hendrerit turpis, quis convallis tellus augue nec neque. Mauris viverra orci eu dui cursus, a consectetur mi porta. Mauris ut mauris leo.",
         imgList: [
             "/sophia/musicals/musical2.jpg",
+            "/sophia/musicals/WechatIMG120.jpg",
         ]
     },
     {
@@ -23,6 +25,7 @@ const steps = [
         description: "Maecenas ut enim et eros facilisis imperdiet quis sit amet mi. Maecenas tincidunt quam massa, eu hendrerit nibh vulputate quis.",
         imgList: [
             "/sophia/musicals/musical3.jpg",
+            "/sophia/musicals/WechatIMG121.jpg",
         ]
     }
 ]
@@ -56,7 +59,7 @@ function prev() {
                             </template>
                         </n-ellipsis>
                         <div :style="{ width: '100%', opacity: current == index + 1 ? '1' : '0.5' }">
-                            <n-carousel>
+                            <n-carousel :draggable="current == index + 1">
                                 <n-image v-for="url in step.imgList" class="carousel-img"
                                     :preview-disabled="current != index + 1" :src="url"></n-image>
                             </n-carousel>
