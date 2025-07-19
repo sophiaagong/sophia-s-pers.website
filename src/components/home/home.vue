@@ -29,7 +29,9 @@
                 </n-gi>
                 <n-gi :span="12">
                     <div class="photo-container">
-                        <img src="/sophia/portrait.jpg" />
+                        <div class="photo-wrapper">
+                            <img src="/sophia/portrait.jpg" alt="Portrait" />
+                        </div>
                     </div>
                 </n-gi>
             </n-grid>
@@ -66,12 +68,21 @@
 
 .photo-container {
     text-align: center;
+}
 
-    img {
-        border-radius: 12px;
-        border: 12px solid rgb(194, 242, 255);
-        // photo inner border radius: 12px
-        width: 60%;
-    }
+.photo-wrapper {
+    display: inline-block;
+    width: 60%;
+    border: 12px solid rgb(194, 242, 255);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgb(194, 242, 255);
+}
+
+.photo-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 </style>
