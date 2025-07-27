@@ -11,6 +11,7 @@ import {
 import HomeVue from '../home/home.vue';
 import AboutVue from '../about/about.vue';
 import MusicalVue from '../musical/musical.vue';
+import CompetitionVue from '../competition/competition.vue';
 import router from '../../router/router';
 
 const themeOverrides = {
@@ -56,6 +57,7 @@ onMounted(() => {
                 <home-vue></home-vue>
                 <about-vue></about-vue>
                 <musical-vue></musical-vue>
+                <competition-vue></competition-vue>
             </n-layout-content>
         </n-layout>
     </n-config-provider>
