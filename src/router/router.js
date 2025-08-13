@@ -1,7 +1,10 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 import Layout from "../components/Layout/layout.vue"
 import home from "../components/home/home.vue"
+import about from "../components/about/about.vue";
 import musical from "../components/musical/musical.vue";
+import competition from "../components/competition/competition.vue";
+import community from "../components/community/community.vue";
 
 const routes = [
     {
@@ -15,9 +18,24 @@ const routes = [
                 component: home
             },
             {
-                path: "musicals",
-                name: "Musicals",
+                path: "about",
+                name: "About",
+                component: about
+            },
+            {
+                path: "musical",
+                name: "Musical",
                 component: musical
+            },
+            {
+                path: "competition",
+                name: "Competition",
+                component: competition
+            },
+            {
+                path: "community",
+                name: "Community",
+                component: community
             }
         ]
     },

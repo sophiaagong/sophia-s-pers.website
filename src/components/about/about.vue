@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import router from '../../router/router';
+import { useBreakpoint } from '../../assets/general';
 
-const showModal = ref(false);
+const { isMobile } = useBreakpoint()
+
+const email = "sophia@gmail.com"
 </script>
 
 <template>
@@ -9,11 +12,11 @@ const showModal = ref(false);
         <div class="container-inner">
             <div class="subtitle">My Info</div>
             <div class="title">About me</div>
-            <n-grid class="content-container" :x-gap="48">
-                <n-gi :span="12" class="left">
+            <n-grid class="content-container" :x-gap="isMobile ? 0 : 24">
+                <n-gi :span="isMobile ? 24 : 12" class="left">
                     <img src="/sophia/20250719.jpg" />
                 </n-gi>
-                <n-gi :span="12" class="right">
+                <n-gi :span="isMobile ? 24 : 12" class="right">
                     <div class="hello">Hi, I'm Sophia, based in Irvine, California.</div>
                     <div class="intro">Mauris accumsan ornare dui, ut interdum neque condimentum quis. Interdum et
                         malesuada fames ac ante ipsum primis in faucibus. Nullam condimentum auctor diam ac tincidunt.
@@ -21,8 +24,8 @@ const showModal = ref(false);
                     <div class="intro">Mauris accumsan ornare dui, ut interdum neque condimentum quis. Interdum et
                         malesuada fames ac ante ipsum primis in faucibus. Nullam condimentum auctor diam ac tincidunt.
                     </div>
-                    <n-grid :x-gap="12">
-                        <n-gi class="block" span="8" @click="showModal = true">
+                    <n-grid :x-gap="12" :y-gap="16">
+                        <n-gi class="block" :span="isMobile ? 24 : 8" @click="router.push({ name: 'Musical' })">
                             <div>
                                 <div>
                                     <n-icon :size="24" :color="'#E4D8FFFF'">
@@ -43,7 +46,7 @@ const showModal = ref(false);
                                 <div class="time"><n-text :depth="3">10+ Years</n-text></div>
                             </div>
                         </n-gi>
-                        <n-gi class="block" span="8">
+                        <n-gi class="block" :span="isMobile ? 24 : 8" @click="router.push({ name: 'Competition' })">
                             <div>
                                 <div>
                                     <n-icon :size="24" :color="'#E4D8FFFF'">
@@ -63,7 +66,7 @@ const showModal = ref(false);
                                 <div class="time"><n-text :depth="3">30+ Competitions</n-text></div>
                             </div>
                         </n-gi>
-                        <n-gi class="block" span="8">
+                        <n-gi class="block" :span="isMobile ? 24 : 8" @click="router.push({ name: 'Community' })">
                             <div>
                                 <div>
                                     <n-icon :size="24" :color="'#E4D8FFFF'"><svg xmlns="http://www.w3.org/2000/svg"
@@ -86,38 +89,36 @@ const showModal = ref(false);
                             </div>
                         </n-gi>
                     </n-grid>
-                    <div style="margin-top: 1rem;">
-                        <n-button round type="primary" style="color: black; padding: 1.5rem">
+                    <div class="contactButton" style="margin-top: 1rem;">
+                        <n-button tag="a" :href="`mailto:${email}`" round type="primary"
+                            style="color: black; padding: 0.5rem 1.5rem">
                             <template #icon>
                                 <n-icon>
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         viewBox="0 0 512 512">
                                         <path
-                                            d="M256 464c114.87 0 208-93.13 208-208S370.87 48 256 48S48 141.13 48 256s93.13 208 208 208zm-91.36-212.65a16 16 0 0 1 22.63-.09L240 303.58V170a16 16 0 0 1 32 0v133.58l52.73-52.32A16 16 0 1 1 347.27 274l-80 79.39a16 16 0 0 1-22.54 0l-80-79.39a16 16 0 0 1-.09-22.65z"
+                                            d="M424 80H88a56.06 56.06 0 0 0-56 56v240a56.06 56.06 0 0 0 56 56h336a56.06 56.06 0 0 0 56-56V136a56.06 56.06 0 0 0-56-56zm-14.18 92.63l-144 112a16 16 0 0 1-19.64 0l-144-112a16 16 0 1 1 19.64-25.26L256 251.73l134.18-104.36a16 16 0 0 1 19.64 25.26z"
                                             fill="currentColor"></path>
                                     </svg>
                                 </n-icon>
                             </template>
-                            Scroll Down
+                            {{ `My Email: ${email}` }}
                         </n-button>
                     </div>
                 </n-gi>
             </n-grid>
         </div>
-        <n-modal v-model:show="showModal" class="custom-card" preset="card" style="height: 90vh; width: 90vw"
-            title="Musicals" size="huge" :bordered="false" :auto-focus="false">
-            content
-        </n-modal>
     </div>
 </template>
 
 <style lang="less" scoped>
 .about-container {
-    height: calc(100vh);
+    min-height: calc(100vh - 230px);
     font-family: "Poppins", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 2rem 2rem 2rem;
 
     .container-inner {
         width: 80vw;
@@ -137,10 +138,12 @@ const showModal = ref(false);
         }
 
         .content-container {
-            margin-top: 2rem;
+            margin: 3rem 0;
             align-items: center;
 
             .left {
+                padding-right: 1rem;
+
                 img {
                     width: 100%;
                     border-radius: 12px;
@@ -148,6 +151,8 @@ const showModal = ref(false);
             }
 
             .right {
+                padding-left: 1rem;
+
                 .hello {
                     font-size: 1.2rem;
                     font-weight: 600;
@@ -166,6 +171,11 @@ const showModal = ref(false);
                     justify-content: center;
                     padding: 2rem;
                     cursor: pointer;
+                    transition: all 0.2s;
+
+                    &:hover {
+                        box-shadow: var(--boxShadow-light);
+                    }
 
                     .label {
                         font-weight: 600;
@@ -174,6 +184,34 @@ const showModal = ref(false);
                     .time {
                         font-size: 0.8rem;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        .container-inner {
+            width: 100%;
+
+            .content-container {
+                .left {
+                    padding: 0;
+                    margin-bottom: 3rem;
+                }
+
+                .right {
+                    padding: 0;
+                }
+            }
+
+            .contactButton {
+                text-align: center;
+
+                .n-button {
+                    width: calc(100% - 3rem);
+                    border-radius: 12px;
                 }
             }
         }

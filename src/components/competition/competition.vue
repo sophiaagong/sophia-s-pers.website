@@ -1,7 +1,10 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import axios from 'axios'
+import { ref, onMounted } from 'vue'
+import axios from 'axios';
 import { decode } from 'js-base64';
+import { useBreakpoint } from '../../assets/general';
+
+const { isMobile } = useBreakpoint()
 
 const showEssayModal = ref(false);
 
@@ -20,9 +23,10 @@ const currentEssayIndex = ref(null);
 const resizeObserver = ref(null);
 
 onMounted(async () => {
-    const buffer = await readJSON()
-    essays.value = buffer.data
-    blocks.value = Array.from(carousel.value.querySelectorAll(".essay-block"))
+    const buffer = await readJSON();
+    essays.value = buffer.data;
+    blocks.value = Array.from(carousel.value.querySelectorAll('.essay-block'))
+    updatePages()
     resizeObserver.value = new ResizeObserver(updatePages)
     resizeObserver.value.observe(carousel.value)
 })
@@ -96,22 +100,36 @@ function onScroll() {
                             <n-flex vertical :size="24">
                                 <n-flex vertical>
                                     <div class="label">
-                                        <n-ellipsis :line-clamp="1">{{ essay.label }}</n-ellipsis>
+                                        <n-ellipsis :line-clamp="1">
+                                            {{ essay.label }}
+                                            <template #tooltip>
+                                                <div :style="{ maxWidth: '100%', width: isMobile ? '80vw' : '480px' }">
+                                                    {{ essay.label }}
+                                                </div>
+                                            </template>
+                                        </n-ellipsis>
                                     </div>
                                     <n-flex vertical :size="18">
                                         <div class="essay-title">
-                                            <n-ellipsis :line-clamp="2">
+                                            <n-ellipsis style="min-height: 77px" :line-clamp="2">
                                                 {{ essay.title }}
+                                                <template #tooltip>
+                                                    <div
+                                                        :style="{ maxWidth: '100%', width: isMobile ? '80vw' : '480px' }">
+                                                        {{ essay.title }}
+                                                    </div>
+                                                </template>
                                             </n-ellipsis>
                                         </div>
                                         <div class="achievement">
-                                            <n-tag>{{ essay.achievement || 'Unassigned' }}</n-tag>
+                                            <n-tag type="success">{{ essay.achievement }}</n-tag>
                                         </div>
                                         <div class="description">
                                             <n-ellipsis :line-clamp="3">
                                                 {{ essay.description }}
                                                 <template #tooltip>
-                                                    <div style="max-width: 100%; width: 240px">
+                                                    <div
+                                                        :style="{ maxWidth: '100%', width: isMobile ? '80vw' : '480px' }">
                                                         {{ essay.description }}
                                                     </div>
                                                 </template>
@@ -155,16 +173,26 @@ function onScroll() {
                 </n-flex>
             </div>
         </div>
-        <n-modal :auto-focus="false" v-model:show="showEssayModal" preset="card"
-            :style="{ height: '90vh', width: '840px', maxWidth: '90vw' }" size="huge" :bordered="false">
+        <n-modal :auto-focus="false" v-model:show="showEssayModal" preset="card" :block-scroll="true"
+            :style="{ height: isMobile ? '100vh' : '90vh', width: isMobile ? '100vw' : '840px', maxWidth: isMobile ? '100vw' : '90vw' }"
+            size="huge" :bordered="false">
             <template #header>
                 <div class="modal-header">
-                    <b v-if="essays[currentEssayIndex].prompt">{{ essays[currentEssayIndex].prompt }}</b>
-                    <b v-else>{{ essays[currentEssayIndex].title }}</b>
+                    <n-ellipsis :line-clamp="2">
+                        <b v-if="essays[currentEssayIndex].prompt">{{ essays[currentEssayIndex].prompt }}</b>
+                        <b v-else>{{ essays[currentEssayIndex].title }}</b>
+                        <template #tooltip>
+                            <div :style="{ maxWidth: '100%', width: isMobile ? '80vw' : '480px' }">
+                                <b v-if="essays[currentEssayIndex].prompt">{{ essays[currentEssayIndex].prompt }}</b>
+                                <b v-else>{{ essays[currentEssayIndex].title }}</b>
+                            </div>
+                        </template>
+                    </n-ellipsis>
                 </div>
                 <n-text class="essay-date" :depth="3">{{ essays[currentEssayIndex].date }}</n-text>
             </template>
-            <n-scrollbar style="max-height: calc(90vh - 90px - 8rem); padding-right: 1rem">
+            <n-scrollbar
+                :style="{ maxHeight: isMobile ? 'calc(100vh - 13rem)' : 'calc(90vh - 13rem)', paddingRight: '1rem' }">
                 <div class="essay-content" v-html="decode(essays[currentEssayIndex].content)"></div>
             </n-scrollbar>
         </n-modal>
@@ -173,15 +201,16 @@ function onScroll() {
 
 <style lang='less' scoped>
 .competition-container {
-    height: 100vh;
+    min-height: calc(100vh - 230px);
     font-family: "Poppins", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 2rem 2rem 2rem;
 
     .container-inner {
         position: relative;
-        width: 85vw;
+        width: 80vw;
         margin: 0 auto;
     }
 
@@ -204,7 +233,7 @@ function onScroll() {
         .essay-block {
             max-width: 100%;
             min-width: 33vw;
-            border: 1px solid #eeeeee;
+            background: #fafafa;
             padding: 2rem;
             border-radius: 8px;
 
@@ -235,23 +264,21 @@ function onScroll() {
 }
 
 .modal-header {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
 }
 
 .essay-date {
     font-size: 1rem;
 }
 
-// .modal-header,
-// .essay-date,
-// .essay-content {
-//     font-family: 'Times New Roman', Times, serif;
-// }
+.modal-header,
+.essay-date,
+.essay-content {
+    font-family: 'Times New Roman', Times, serif;
+}
 
 .essay-content {
-    font-size: 1.1rem;
-    font-family: 'Times New Roman', Times, serif;
-    color: #000;
+    font-size: 1rem;
 }
 
 .carousel {
@@ -263,7 +290,7 @@ function onScroll() {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 1.5rem;
+    margin: 1.5rem;
 }
 
 .dot {
@@ -279,5 +306,19 @@ function onScroll() {
 .dot.active {
     opacity: 1;
     transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+    .competition-container {
+        .container-inner {
+            width: 100%;
+        }
+
+        .essay-container {
+            .essay-block {
+                min-width: calc(100vw - 8rem);
+            }
+        }
+    }
 }
 </style>
