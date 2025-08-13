@@ -14,7 +14,7 @@ const email = "sophia@gmail.com"
             <div class="title">About me</div>
             <n-grid class="content-container" :x-gap="isMobile ? 0 : 24">
                 <n-gi :span="isMobile ? 24 : 12" class="left">
-                    <img src="/sophia/20250719.jpg" />
+                    <img src="/sophia/20250719.webp" />
                 </n-gi>
                 <n-gi :span="isMobile ? 24 : 12" class="right">
                     <div class="hello">Hi, I'm Sophia, based in Irvine, California.</div>

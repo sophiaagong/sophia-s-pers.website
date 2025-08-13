@@ -13,7 +13,7 @@ const { isMobile } = useBreakpoint()
                     <n-flex vertical :size="36">
                         <div v-if="isMobile" class="photo-container">
                             <div class="photo-wrapper">
-                                <img src="/sophia/portrait.jpg" alt="Portrait" />
+                                <img src="/sophia/portrait.webp" alt="Portrait" />
                             </div>
                         </div>
                         <div class="hello">Hi, my name is Sophia.</div>
@@ -41,7 +41,7 @@ const { isMobile } = useBreakpoint()
                 <n-gi v-if="!isMobile" :span="12">
                     <div class="photo-container">
                         <div class="photo-wrapper">
-                            <img src="/sophia/portrait.jpg" alt="Portrait" />
+                            <img src="/sophia/portrait.webp" alt="Portrait" />
                         </div>
                     </div>
                 </n-gi>

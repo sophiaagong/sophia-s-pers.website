@@ -11,24 +11,24 @@ const steps = [
         title: "Lorem ipsum dolor sit amet", // 音乐剧阶段名称
         description: "Aenean varius varius dictum. Ut nibh odio, luctus et sodales nec, mattis eu neque. Aliquam cursus quam dignissim mi tempus, sit amet dictum ex luctus. Nam ut consequat diam.",
         imgList: [
-            "/sophia/musicals/musical1.jpg",
-            "/sophia/musicals/WechatIMG119.jpg",
+            "/sophia/musicals/musical1.webp",
+            "/sophia/musicals/WechatIMG119.webp",
         ]
     },
     {
         title: "Morbi faucibus lorem justo",
         description: "Donec mollis, nisi et tristique tincidunt, turpis quam hendrerit turpis, quis convallis tellus augue nec neque. Mauris viverra orci eu dui cursus, a consectetur mi porta. Mauris ut mauris leo.",
         imgList: [
-            "/sophia/musicals/musical2.jpg",
-            "/sophia/musicals/WechatIMG120.jpg",
+            "/sophia/musicals/musical2.webp",
+            "/sophia/musicals/WechatIMG120.webp",
         ]
     },
     {
         title: "Nulla tempor nisl nec",
         description: "Maecenas ut enim et eros facilisis imperdiet quis sit amet mi. Maecenas tincidunt quam massa, eu hendrerit nibh vulputate quis.",
         imgList: [
-            "/sophia/musicals/musical3.jpg",
-            "/sophia/musicals/WechatIMG121.jpg",
+            "/sophia/musicals/musical3.webp",
+            "/sophia/musicals/WechatIMG121.webp",
         ]
     }
 ]
