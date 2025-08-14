@@ -4,7 +4,7 @@ import { useBreakpoint } from '../../assets/general';
 
 const { isMobile } = useBreakpoint()
 
-const email = "sophia@gmail.com"
+const email = "sophia.gong1207@gmail.com"
 </script>
 
 <template>
@@ -14,12 +14,12 @@ const email = "sophia@gmail.com"
             <div class="title">About me</div>
             <n-grid class="content-container" :x-gap="isMobile ? 0 : 24">
                 <n-gi :span="isMobile ? 24 : 12" class="left">
-                    <img src="/sophia/20250719.webp" />
+                    <img src="/sophia/5G8A3590.webp" />
                 </n-gi>
                 <n-gi :span="isMobile ? 24 : 12" class="right">
                     <div class="hello">Hi, I'm Sophia, based in Irvine, California.</div>
-                    <div class="intro">Mauris accumsan ornare dui, ut interdum neque condimentum quis. Interdum et
-                        malesuada fames ac ante ipsum primis in faucibus. Nullam condimentum auctor diam ac tincidunt.
+                    <div class="intro">Welcome to my personal website where I would showcase my experience with things I
+                        love, the acheivements I acclaimed and the contributions I made to my community.
                     </div>
                     <div class="intro">Mauris accumsan ornare dui, ut interdum neque condimentum quis. Interdum et
                         malesuada fames ac ante ipsum primis in faucibus. Nullam condimentum auctor diam ac tincidunt.
